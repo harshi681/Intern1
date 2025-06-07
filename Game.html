@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-Tac-Toe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+    h1 {
+      color: #333;
+      font-size: 2.5rem;
+      animation: fadeIn 1s ease-in;
+    }
+    .mode-selection {
+      margin-bottom: 15px;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 5px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    .cell {
+      width: 100px;
+      height: 100px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      border: 2px solid #333;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .cell:hover {
+      background-color: #ffd700;
+      transform: scale(1.1);
+    }
+    #reset {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background-color 0.3s;
+    }
+    #reset:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tic-Tac-Toe</h1>
+
+  <div class="mode-selection">
+    <button onclick="startGame('single')">Single Player (vs Bot)</button>
+    <button onclick="startGame('double')">Two Players</button>
+  </div>
+
+  <div class="board" id="board">
+    <div class="cell" data-index="0"></div>
+    <div class="cell" data-index="1"></div>
+    <div class="cell" data-index="2"></div>
+    <div class="cell" data-index="3"></div>
+    <div class="cell" data-index="4"></div>
+    <div class="cell" data-index="5"></div>
+    <div class="cell" data-index="6"></div>
+    <div class="cell" data-index="7"></div>
+    <div class="cell" data-index="8"></div>
+  </div>
+
+  <button id="reset">Reset Game</button>
+
+  <script>
+    let currentPlayer = "X";
+    let boardState = ["", "", "", "", "", "", "", "", ""];
+    let gameActive = false;
+    let gameMode = "double";
+
+    const winningPatterns = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
+    ];
+
+    function startGame(mode) {
+      gameMode = mode;
+      resetGame();
+      gameActive = true;
+    }
+
+    function checkWinner() {
+      for (const pattern of winningPatterns) {
+        const [a, b, c] = pattern;
+        if (boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c]) {
+          gameActive = false;
+          setTimeout(() => alert(`Player ${boardState[a]} wins!`), 100);
+          return;
+        }
+      }
+      if (!boardState.includes("") && gameActive) {
+        gameActive = false;
+        setTimeout(() => alert("It's a draw!"), 100);
+      }
+    }
+
+    function botMove() {
+      if (!gameActive) return;
+      let emptyCells = boardState.map((val, index) => val === "" ? index : null).filter(val => val !== null);
+      if (emptyCells.length === 0) return;
+      let randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+      boardState[randomIndex] = "O";
+      document.querySelector(`.cell[data-index="${randomIndex}"]`).textContent = "O";
+      checkWinner();
+      currentPlayer = "X";
+    }
+
+    function handleCellClick(e) {
+      const index = e.target.getAttribute("data-index");
+      if (boardState[index] || !gameActive) return;
+
+      boardState[index] = currentPlayer;
+      e.target.textContent = currentPlayer;
+      checkWinner();
+
+      if (gameMode === "single" && gameActive) {
+        currentPlayer = "O";
+        setTimeout(botMove, 500);
+      } else {
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+      }
+    }
+
+    function resetGame() {
+      boardState.fill("");
+      document.querySelectorAll(".cell").forEach(cell => cell.textContent = "");
+      currentPlayer = "X";
+      gameActive = true;
+    }
+
+    document.querySelectorAll(".cell").forEach(cell => cell.addEventListener("click", handleCellClick));
+    document.getElementById("reset").addEventListener("click", resetGame);
+  </script>
+
+</body>
+</html>

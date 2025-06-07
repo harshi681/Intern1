@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harshith Kumar Gudigandla | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --accent-color: #f59e0b;
+      --card-bg: #1f1f1f;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+    }
+
+    nav {
+      width: 260px;
+      height: 100vh;
+      background: #181818;
+      padding: 2rem;
+      position: fixed;
+    }
+
+    nav h2 {
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-bottom: 1rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      display: block;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent-color);
+    }
+
+    main {
+      margin-left: 270px;
+      padding: 3rem;
+      max-width: 900px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background: #181818;
+    }
+
+    .footer a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: var(--accent-color);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Side Navigation -->
+  <nav>
+    <h2>Harshith Kumar</h2>
+    <ul>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- Header -->
+    <header>
+      <h1>I'm Harshith Kumar Gudigandla</h1>
+      <p>Aspiring AI/ML Engineer | Passionate Coder | Building Smart Solutions with Java, Python & SQL</p>
+    </header>
+
+    <!-- About Me -->
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <p>I am currently pursuing my B.Tech in Computer Science with specialization in AIML from ACE Engineering College, Hyderabad. I am passionate about developing intelligent solutions using Machine Learning and Full Stack technologies.</p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="card">
+          <h3>Botnet Attack Detection</h3>
+          <p>Developed using Random Forest & Neural Networks with 92% accuracy.</p>
+          <a href="#">Publication</a>
+        </div>
+        <div class="card">
+          <h3>Neurofibroma Classification</h3>
+          <p>CNN-based model on 10,000+ MRI scans with 90% accuracy.</p>
+          <a href="#">GitHub</a>
+        </div>
+        <div class="card">
+          <h3>Trawell Website</h3>
+          <p>Static responsive travel website using HTML/CSS.</p>
+          <a href="#">Visit Website</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <p>Java, Python, C, HTML/CSS, SQL, Machine Learning (Python), Java Full Stack Development</p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:harshithkumargudigandla@gmail.com">harshithkumargudigandla@gmail.com</a></p>
+      <p>GitHub | LinkedIn</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="#">Facebook</a>
+    <a href="#">Twitter</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">GitHub</a>
+  </footer>
+
+</body>
+</html>
